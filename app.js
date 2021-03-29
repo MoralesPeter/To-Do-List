@@ -33,17 +33,26 @@ const item2 = new Item ({
 
 const defaultItems = [item0, item1, item2];
 
-Item.insertMany(defaultItems, (err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Successfully saved items to database!");
-  }
-});
+
 
 app.get("/", (req, res) => {
 
-  res.render("list", {listTitle: "Today", newListItems: items});
+  Item.find({}, (err, foundItems) => {
+
+    if (foundItems.length === 0) {
+      Item.insertMany(defaultItems, (err) => {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Successfully saved default items to database!");
+        }
+      });
+      res.redirect("/");
+    } else {
+      res.render("list", {listTitle: "Today", newListItems: foundItems});
+    }
+
+  });
 
 });
 
@@ -64,7 +73,7 @@ app.get("/work", (req,res) => {
   res.render("list", {listTitle: "Work List", newListItems: workItems});
 });
 
-app.get("/about", (req, res) =>{
+app.get("/about", (req, res) => {
   res.render("about");
 });
 
