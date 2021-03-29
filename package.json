@@ -11,6 +11,15 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.3"
-  }
+    "express": "^4.16.3",
+    "mongoose": "^5.12.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoralesPeter/To-Do-List.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MoralesPeter/To-Do-List/issues"
+  },
+  "homepage": "https://github.com/MoralesPeter/To-Do-List#readme"
 }
